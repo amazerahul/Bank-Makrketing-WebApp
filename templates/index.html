@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Bank-Marketing Prediction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <style>
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f5f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color:rgb(206, 203, 15); /* Green */
+    color: black;
+    text-align: left;
+
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+    color: #1abc9c !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default bg-4">
+  <div class="container">
+    <div class="navbar-header">
+      
+      <h2>Bank-Marketing Prediction</h2>
+    </div>
+    
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><p>Using this WebApp you can predict the response of a customer based on different parameters.</p></div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+  <form action="{{ url_for('predict')}}"method="post">
+    <div class="form-group">
+      <label for="tv">Enter the Age</label>
+      <input type="text" class="form-control" name="age" id="age" placeholder="Age of the customer. e.g 23" required="required">
+    </div>
+    <div class="form-group">
+      <label for="radio">Enter the Job</label>
+      <select class="form-control" name="job" id="job">
+	  <option selected>Select the job type</option>
+	  <option value="0">Admin</option>
+	  <option value="1">Blue-Collar</option>
+	  <option value="2">Entrepreneur</option>
+	  <option value="3">Housemaid</option>
+	  <option value="4">Management</option>
+	  <option value="5">Retired</option>
+	  <option value="6">Self-Employed</option>
+	  <option value="7">Services</option>
+	  <option value="8">Student</option>
+	  <option value="9">Technician</option>
+	  <option value="10">Unemployed</option>
+	  <option value="11">Unknown</option>
+	 </select>
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter the Balance</label>
+      <input type="text" class="form-control" name="balance" id="balance" placeholder="Customer account balance. e.g 50000" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter days passed after last contact</label>
+      <input type="text" class="form-control" name="days" id="days" placeholder="Number of days passed. e.g 63" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter months passed after last contact</label>
+      <input type="text" class="form-control" name="months" id="months" placeholder="Number of months passed. e.g 7" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter the contact duration</label>
+      <input type="text" class="form-control" name="duration" id="duration" placeholder="Contact duration (in seconds). e.g 120" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter the outcome of previous campaign</label>
+     <select class="form-control" name="poutcome" id="poutcome">
+	  <option selected>Select the previous campaign outcome</option>
+	  <option value="0">Failure</option>
+	  <option value="1">Other</option>
+	  <option value="2">Success</option>
+	  <option value="3">Unknown</option>
+	 </select>
+    </div>
+     <div class="form-group">
+      <label for="newspaper">Enter the days passed after last contact in previous campaign</label>
+      <input type="text" class="form-control" name="pdays" id="pdays" placeholder="Number of days passed. e.g 10" required="required">
+    </div>
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    <button type="submit" class="btn btn-primary btn-block btn-large">Predict Response</button>
+  </form>
+  {{ prediction_text }}
+</div>
+<div class="col-md-4"></div>
+</div>
+</div>
+
+
+
+
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p>Thanks to <a href="https://www.boardinfinity.com">BoardInfinity</a></p>
+  <p class='footer-description'>Made with ❤️ by Rahul Patel.</p>
+  <div class="contact" >
+    <a target="_blank" href="https://github.com/amazerahul"><i class="fab fa-github fa-lg contact-icon" style="color:blanchedalmond !important"></i></a>
+    <a target="_blank" href="https://www.linkedin.com/in/11rahul6/"><i class="fab fa-linkedin fa-lg contact-icon" style="color:blanchedalmond !important"></i></a>
+</div>
+   
+  
+</footer>
+
+</body>
+</html>
