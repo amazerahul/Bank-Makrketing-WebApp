@@ -71,13 +71,14 @@
 <div class="container-fluid bg-1 text-center">
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-8"><p>Using this WebApp you can predict the response of a customer based on different parameters.</p></div>
+    <div class="col-md-8"><p style="text-align: center;">Using this WebApp you can predict the response of a customer based on different parameters.</p></div>
     <div class="col-md-2"></div>
   </div>
+  <p style="text-align:center; font-size: 20px; font-weight: bolder;"><i class="text-center text-info">{{ prediction_text }}</i></p>
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-  <form action="{{ url_for('predict')}}"method="post">
+  <form action="{{ url_for('predict')}}" method="post">
     <div class="form-group">
       <label for="tv">Enter the Age</label>
       <input type="text" class="form-control" name="age" id="age" placeholder="Age of the customer. e.g 23" required="required">
@@ -131,15 +132,13 @@
       <input type="text" class="form-control" name="pdays" id="pdays" placeholder="Number of days passed. e.g 10" required="required">
     </div>
     <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-    <button type="submit" class="btn btn-primary btn-block btn-large">Predict Response</button>
+    <button type="submit" class="btn btn-primary btn-block btn-large" onsubmit="myFunction">Predict Response</button>
   </form>
-  {{ prediction_text }}
+
 </div>
 <div class="col-md-4"></div>
 </div>
 </div>
-
-
 
 
 
@@ -154,6 +153,5 @@
    
   
 </footer>
-
 </body>
 </html>
